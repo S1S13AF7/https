@@ -1,0 +1,127 @@
+# кодування документів
+AddDefaultCharset utf-8
+#AddDefaultCharset koi8-u
+#AddDefaultCharset windows-1251
+
+# індексні файли та приховані розширення
+DirectoryIndex iNdex.php index.php index.xhtml index.html index.htm
+IndexIgnore *.bak *.ini *.gz *.htaccess *.ico *.log *.tar *.xml HTTP*.*
+
+# часовий пояс оточення
+SetEnv TZ "Europe/Kyiv"
+
+<IfModule mod_php.c>
+	# дефолтний часовий пояс: Європа/Київ
+	#php_value date.timezone 'Europe/Kiev'
+	php_value date.timezone 'Europe/Kyiv'
+	# обмеження розміру вивантажуваних файлів
+	php_value upload_max_filesize 100M
+	php_value post_max_size 100M
+	# вимикаємо відображення помилок
+	php_flag display_errors off
+	# валідний для xhtml роздільник
+	php_value arg_separator.output &amp;
+	# дозволити дописувати сесії до URL
+	php_flag session.use_trans_sid on
+	# вимкнути обмеження "життя" cookies
+	php_flag session.cookie_lifetime off
+	# кодування за замовчуванням
+	php_value default_charset UTF-8
+</IfModule>
+
+# вимикаємо лістинг директорій та дозволяємо симлінки
+Options -Indexes
+Options +FollowSymLinks
+
+# перевизначаємо сторінки помилок:
+ErrorDocument 400 /pages/HTTP_S_.php?code=400
+ErrorDocument 401 /pages/HTTP_S_.php?code=401
+ErrorDocument 402 /pages/HTTP_S_.php?code=402
+ErrorDocument 403 /pages/HTTP_S_.php?code=403
+ErrorDocument 404 /pages/HTTP_S_.php?code=404
+ErrorDocument 405 /pages/HTTP_S_.php?code=405
+ErrorDocument 406 /pages/HTTP_S_.php?code=406
+ErrorDocument 407 /pages/HTTP_S_.php?code=407
+ErrorDocument 408 /pages/HTTP_S_.php?code=408
+ErrorDocument 409 /pages/HTTP_S_.php?code=409
+ErrorDocument 410 /pages/HTTP_S_.php?code=410
+ErrorDocument 411 /pages/HTTP_S_.php?code=411
+ErrorDocument 412 /pages/HTTP_S_.php?code=412
+ErrorDocument 413 /pages/HTTP_S_.php?code=413
+ErrorDocument 414 /pages/HTTP_S_.php?code=414
+ErrorDocument 415 /pages/HTTP_S_.php?code=415
+ErrorDocument 416 /pages/HTTP_S_.php?code=416
+ErrorDocument 417 /pages/HTTP_S_.php?code=417
+#ErrorDocument 418 /pages/HTTP_S_.php?code=418
+#ErrorDocument 419 /pages/HTTP_S_.php?code=419
+#ErrorDocument 420 /pages/HTTP_S_.php?code=420
+ErrorDocument 421 /pages/HTTP_S_.php?code=421
+ErrorDocument 422 /pages/HTTP_S_.php?code=422
+ErrorDocument 423 /pages/HTTP_S_.php?code=423
+ErrorDocument 424 /pages/HTTP_S_.php?code=424
+#ErrorDocument 425 /pages/HTTP_S_.php?code=425
+ErrorDocument 426 /pages/HTTP_S_.php?code=426
+ErrorDocument 428 /pages/HTTP_S_.php?code=428
+ErrorDocument 429 /pages/HTTP_S_.php?code=429
+ErrorDocument 431 /pages/HTTP_S_.php?code=431
+#ErrorDocument 440 /pages/HTTP_S_.php?code=440
+#ErrorDocument 444 /pages/HTTP_S_.php?code=444
+ErrorDocument 451 /pages/HTTP_S_.php?code=451
+#ErrorDocument 494 /pages/HTTP_S_.php?code=494
+#ErrorDocument 495 /pages/HTTP_S_.php?code=495
+#ErrorDocument 496 /pages/HTTP_S_.php?code=496
+#ErrorDocument 497 /pages/HTTP_S_.php?code=497
+#ErrorDocument 499 /pages/HTTP_S_.php?code=499
+ErrorDocument 500 /pages/HTTP_S_.php?code=500
+ErrorDocument 501 /pages/HTTP_S_.php?code=501
+ErrorDocument 502 /pages/HTTP_S_.php?code=502
+ErrorDocument 503 /pages/HTTP_S_.php?code=503
+ErrorDocument 504 /pages/HTTP_S_.php?code=504
+ErrorDocument 505 /pages/HTTP_S_.php?code=505
+ErrorDocument 506 /pages/HTTP_S_.php?code=506
+ErrorDocument 507 /pages/HTTP_S_.php?code=507
+ErrorDocument 508 /pages/HTTP_S_.php?code=508
+#ErrorDocument 509 /pages/HTTP_S_.php?code=509
+ErrorDocument 510 /pages/HTTP_S_.php?code=510
+ErrorDocument 511 /pages/HTTP_S_.php?code=511
+#ErrorDocument 520 /pages/HTTP_S_.php?code=520
+#ErrorDocument 521 /pages/HTTP_S_.php?code=521
+#ErrorDocument 522 /pages/HTTP_S_.php?code=522
+#ErrorDocument 523 /pages/HTTP_S_.php?code=523
+#ErrorDocument 524 /pages/HTTP_S_.php?code=524
+#ErrorDocument 525 /pages/HTTP_S_.php?code=525
+#ErrorDocument 526 /pages/HTTP_S_.php?code=526
+#ErrorDocument 598 /pages/HTTP_S_.php?code=598
+#ErrorDocument 599 /pages/HTTP_S_.php?code=599
+
+# статичні HTML для реальних сценаріїв, коли PHP не може відпрацювати
+ErrorDocument 400 /pages/HTTP400.html
+ErrorDocument 408 /pages/HTTP408.html
+ErrorDocument 413 /pages/HTTP413.html
+ErrorDocument 414 /pages/HTTP414.html
+ErrorDocument 431 /pages/HTTP431.html
+#ErrorDocument 494 /pages/HTTP494.html
+#ErrorDocument 495 /pages/HTTP495.html
+#ErrorDocument 496 /pages/HTTP496.html
+#ErrorDocument 497 /pages/HTTP497.html
+ErrorDocument 500 /pages/HTTP500.html
+ErrorDocument 502 /pages/HTTP502.html
+ErrorDocument 503 /pages/HTTP503.html
+ErrorDocument 504 /pages/HTTP504.html
+#ErrorDocument 520 /pages/HTTP520.html
+#ErrorDocument 521 /pages/HTTP521.html
+#ErrorDocument 522 /pages/HTTP522.html
+#ErrorDocument 523 /pages/HTTP523.html
+#ErrorDocument 524 /pages/HTTP524.html
+#ErrorDocument 525 /pages/HTTP525.html
+#ErrorDocument 526 /pages/HTTP526.html
+
+<IfModule mod_rewrite.c>
+	RewriteEngine on
+	# пошук кореневих файлів у теці /pages/
+	RewriteBase /
+	RewriteCond %{SCRIPT_FILENAME} !-f
+	RewriteRule ^([^/]+)$ pages/$1 [L,QSA]
+</IfModule>
+
+# last upd: 24.11.2k26 00:42 [Europe/Kyiv], @S1S13AF7.
