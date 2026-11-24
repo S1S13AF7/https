@@ -1,11 +1,18 @@
 # кодування документів
 AddDefaultCharset utf-8
+#AddDefaultCharset koi8-u
+#AddDefaultCharset windows-1251
+
+## Не писать в access.log информацию о файлах *.gif и *.jpg
+#SetEnvIf Request_URI \.gif$ access_log
+#SetEnvIf Request_URI \.jpg$ access_log
 
 # індексні файли та приховані розширення
 DirectoryIndex iNdex.php index.php index.xhtml index.html index.htm
-IndexIgnore *.bak *.ini *.gz *.htaccess *.ico *.log *.tar *.xml HTTP*.* *.sq* *.db *.tmp
+IndexIgnore *.bak *.i* *.gz *.log *.tar *.xml HTTP*.* *.sq* *.db *.tmp *Коп*.*
 
 # часовий пояс оточення
+#SetEnv TZ "Europe/Kiev"
 SetEnv TZ "Europe/Kyiv"
 
 <IfModule mod_php.c>
@@ -23,6 +30,8 @@ SetEnv TZ "Europe/Kyiv"
 	php_flag session.use_trans_sid on
 	# вимкнути обмеження "життя" cookies
 	php_flag session.cookie_lifetime off
+	# вмикаємо(?) вбудоване стиснення
+	#php_flag zlib.output_compression on
 	# кодування за замовчуванням
 	php_value default_charset UTF-8
 </IfModule>
@@ -33,6 +42,31 @@ Options +FollowSymLinks
 
 <IfModule mod_autoindex.c>
 	IndexOptions Charset=UTF-8 FancyIndexing FoldersFirst HTMLtable IgnoreCase NameWidth=* DescriptionWidth=* XHTML
+	IndexOrderDefault Ascending Name
+	AddDescription "txt file" .txt
+	AddDescription "rtf file" .rtf
+	AddDescription "xls file" .xls .xlsx
+	AddDescription "doc file" .doc .docx
+	AddDescription "iso file" .iso
+	AddDescription "bin file" .bin
+	AddDescription "pdf file" .pdf
+	AddDescription "rar file" .rar
+	AddDescription "zip file" .zip
+	AddDescription "7z file" .7z
+	AddDescription "img file" .img
+	AddDescription "mid file" .mid
+	AddDescription "wav file" .wav
+	AddDescription "mp3 file" .mp3
+	AddDescription "ogg file" .ogg
+	AddDescription "avi file" .avi
+	AddDescription "mp4 file" .mp4
+	AddDescription "mov file" .mov
+	AddDescription "jpg file" .jpg .jpeg
+	AddDescription "png file" .png
+	AddDescription "webp file" .webp
+	AddDescription "gif file" .gif
+	AddDescription "exe file" .exe
+	AddDescription "apk file" .apk
 </IfModule>
 
 # закриваємо прямий доступ до прихованих файлів (.htaccess, .git, .env тощо)
@@ -95,4 +129,4 @@ ErrorDocument 504 /pages/HTTP504.html
 	RewriteRule ^([^/]+)$ pages/$1 [L,QSA]
 </IfModule>
 
-# last upd: 24.11.2k26 15:24 [Europe/Kyiv], @S1S13AF7.
+# last upd: 24.11.2k26 19:02 [Europe/Kyiv], @S1S13AF7.
