@@ -37,35 +37,35 @@ Options +FollowSymLinks
 </FilesMatch>
 
 # перевизначаємо сторінки помилок:
-ErrorDocument 401 /pages/HTTP_S_.php?code=401
-ErrorDocument 402 /pages/HTTP_S_.php?code=402
-ErrorDocument 403 /pages/HTTP_S_.php?code=403
-ErrorDocument 404 /pages/HTTP_S_.php?code=404
-ErrorDocument 405 /pages/HTTP_S_.php?code=405
-ErrorDocument 406 /pages/HTTP_S_.php?code=406
-ErrorDocument 407 /pages/HTTP_S_.php?code=407
-ErrorDocument 409 /pages/HTTP_S_.php?code=409
-ErrorDocument 410 /pages/HTTP_S_.php?code=410
-ErrorDocument 411 /pages/HTTP_S_.php?code=411
-ErrorDocument 412 /pages/HTTP_S_.php?code=412
-ErrorDocument 415 /pages/HTTP_S_.php?code=415
-ErrorDocument 416 /pages/HTTP_S_.php?code=416
-ErrorDocument 417 /pages/HTTP_S_.php?code=417
-ErrorDocument 421 /pages/HTTP_S_.php?code=421
-ErrorDocument 422 /pages/HTTP_S_.php?code=422
-ErrorDocument 423 /pages/HTTP_S_.php?code=423
-ErrorDocument 424 /pages/HTTP_S_.php?code=424
-ErrorDocument 426 /pages/HTTP_S_.php?code=426
-ErrorDocument 428 /pages/HTTP_S_.php?code=428
-ErrorDocument 429 /pages/HTTP_S_.php?code=429
-ErrorDocument 451 /pages/HTTP_S_.php?code=451
-ErrorDocument 501 /pages/HTTP_S_.php?code=501
-ErrorDocument 505 /pages/HTTP_S_.php?code=505
-ErrorDocument 506 /pages/HTTP_S_.php?code=506
-ErrorDocument 507 /pages/HTTP_S_.php?code=507
-ErrorDocument 508 /pages/HTTP_S_.php?code=508
-ErrorDocument 510 /pages/HTTP_S_.php?code=510
-ErrorDocument 511 /pages/HTTP_S_.php?code=511
+ErrorDocument 401 /pages/HTTP_st.php?code=401
+ErrorDocument 402 /pages/HTTP_st.php?code=402
+ErrorDocument 403 /pages/HTTP_st.php?code=403
+ErrorDocument 404 /pages/HTTP_st.php?code=404
+ErrorDocument 405 /pages/HTTP_st.php?code=405
+ErrorDocument 406 /pages/HTTP_st.php?code=406
+ErrorDocument 407 /pages/HTTP_st.php?code=407
+ErrorDocument 409 /pages/HTTP_st.php?code=409
+ErrorDocument 410 /pages/HTTP_st.php?code=410
+ErrorDocument 411 /pages/HTTP_st.php?code=411
+ErrorDocument 412 /pages/HTTP_st.php?code=412
+ErrorDocument 415 /pages/HTTP_st.php?code=415
+ErrorDocument 416 /pages/HTTP_st.php?code=416
+ErrorDocument 417 /pages/HTTP_st.php?code=417
+ErrorDocument 421 /pages/HTTP_st.php?code=421
+ErrorDocument 422 /pages/HTTP_st.php?code=422
+ErrorDocument 423 /pages/HTTP_st.php?code=423
+ErrorDocument 424 /pages/HTTP_st.php?code=424
+ErrorDocument 426 /pages/HTTP_st.php?code=426
+ErrorDocument 428 /pages/HTTP_st.php?code=428
+ErrorDocument 429 /pages/HTTP_st.php?code=429
+ErrorDocument 451 /pages/HTTP_st.php?code=451
+ErrorDocument 501 /pages/HTTP_st.php?code=501
+ErrorDocument 505 /pages/HTTP_st.php?code=505
+ErrorDocument 506 /pages/HTTP_st.php?code=506
+ErrorDocument 507 /pages/HTTP_st.php?code=507
+ErrorDocument 508 /pages/HTTP_st.php?code=508
+ErrorDocument 510 /pages/HTTP_st.php?code=510
+ErrorDocument 511 /pages/HTTP_st.php?code=511
 
 # статичні HTML для реальних сценаріїв, коли PHP не може відпрацювати
 ErrorDocument 400 /pages/HTTP400.html
