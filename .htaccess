@@ -3,7 +3,7 @@ AddDefaultCharset utf-8
 
 # індексні файли та приховані розширення
 DirectoryIndex iNdex.php index.php index.xhtml index.html index.htm
-IndexIgnore *.bak *.ini *.gz *.htaccess *.ico *.log *.tar *.xml HTTP*.*
+IndexIgnore *.bak *.ini *.gz *.htaccess *.ico *.log *.tar *.xml HTTP*.* *.sq* *.db *.tmp
 
 # часовий пояс оточення
 SetEnv TZ "Europe/Kyiv"
@@ -31,8 +31,17 @@ SetEnv TZ "Europe/Kyiv"
 Options -Indexes
 Options +FollowSymLinks
 
+<IfModule mod_autoindex.c>
+	IndexOptions Charset=UTF-8 FancyIndexing FoldersFirst HTMLtable IgnoreCase NameWidth=* DescriptionWidth=* XHTML
+</IfModule>
+
 # закриваємо прямий доступ до прихованих файлів (.htaccess, .git, .env тощо)
 <FilesMatch "^\.">
+	Require all denied
+</FilesMatch>
+
+# закриваємо прямий доступ до файлів баз даних і тимчасових файлів
+<FilesMatch "\.(sqlite|sqlite3|db|tmp)$">
 	Require all denied
 </FilesMatch>
 
@@ -85,3 +94,5 @@ ErrorDocument 504 /pages/HTTP504.html
 	RewriteCond %{SCRIPT_FILENAME} !-f
 	RewriteRule ^([^/]+)$ pages/$1 [L,QSA]
 </IfModule>
+
+# last upd: 24.11.2k26 15:24 [Europe/Kyiv], @S1S13AF7.
