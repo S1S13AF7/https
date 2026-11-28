@@ -1,7 +1,5 @@
 # кодування документів
 AddDefaultCharset utf-8
-#AddDefaultCharset koi8-u
-#AddDefaultCharset windows-1251
 
 # індексні файли та приховані розширення
 DirectoryIndex iNdex.php index.php index.xhtml index.html index.htm
@@ -11,7 +9,6 @@ IndexIgnore *.bak *.i* *.htaccess *.log *.xml HTTP*.* *.tmp *.css *.shtml *Ко�
 #SetEnv TZ "Europe/Kiev"
 SetEnv TZ "Europe/Kyiv"
 
-#<IfModule mod_php.c>
 <IfModule php_module>
 	# дефолтний часовий пояс: Європа/Київ
 	#php_value date.timezone 'Europe/Kiev'
@@ -20,10 +17,6 @@ SetEnv TZ "Europe/Kyiv"
 	php_flag display_errors off
 	# валідний для xhtml роздільник
 	php_value arg_separator.output &amp;
-	# вимкнути обмеження "життя" cookies (очікує число секунд, а не off у PHP 8)
-	#php_flag session.cookie_lifetime off
-	# вмикаємо(?) вбудоване стиснення
-	#php_flag zlib.output_compression on
 	# кодування за замовчуванням
 	php_value default_charset UTF-8
 </IfModule>
@@ -33,7 +26,8 @@ Options -Indexes
 Options +FollowSymLinks
 
 <IfModule mod_autoindex.c>
-	IndexOptions Charset=UTF-8 FancyIndexing FoldersFirst HTMLtable IgnoreCase NameWidth=* DescriptionWidth=* XHTML
+	IndexOptions Charset=UTF-8 FancyIndexing FoldersFirst HTMLtable \
+		IgnoreCase NameWidth=* DescriptionWidth=* XHTML
 	IndexOrderDefault Ascending Name
 	AddDescription "txt file" .txt
 	AddDescription "rtf file" .rtf
@@ -115,11 +109,15 @@ ErrorDocument 504 /pages/HTTP504.html
 
 <IfModule mod_rewrite.c>
 	RewriteEngine on
-	RewriteRule ^HTTP_status\.php$ /pages/HTTP_st.php [L,QSA]
-	# пошук кореневих файлів у теці /pages/
 	RewriteBase /
+	
+	# Актуальні внутрішні перенаправлення
+	RewriteRule ^HTTP_status\.php$ pages/HTTP_st.php [L,QSA]
+	
+	# Пошук кореневих файлів у теці /pages/
 	RewriteCond %{SCRIPT_FILENAME} !-f
+	RewriteCond %{SCRIPT_FILENAME} !-d
 	RewriteRule ^([^/]+)$ pages/$1 [L,QSA]
 </IfModule>
 
-# last upd: 25.11.2k26 20:42 [Europe/Kyiv], @S1S13AF7.
+# last upd: 28.11.2k26 18:17 [Europe/Kyiv], @S1S13AF7.
